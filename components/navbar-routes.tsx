@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { isTeacher } from "@/lib/teacher";
 
 import { SearchInput } from "./search-input";
+import { useTranslations } from "next-intl";
 
 export const NavbarRoutes = () => {
   const { userId } = useAuth();
@@ -17,6 +18,8 @@ export const NavbarRoutes = () => {
   const isTeacherPage = pathname?.startsWith("/teacher");
   const isCoursePage = pathname?.includes("/courses");
   const isSearchPage = pathname === "/search";
+
+  const t = useTranslations("Navbar");
 
   return (
     <>
@@ -30,13 +33,13 @@ export const NavbarRoutes = () => {
           <Link href="/">
             <Button size="sm" variant="ghost">
               <LogOut className="h-4 w-4 mr-2" />
-              Exit
+              {t("exit")}
             </Button>
           </Link>
         ) : isTeacher(userId) ? (
           <Link href="/teacher/courses">
             <Button size="sm" variant="ghost">
-              Teacher mode
+              {t("tm")}
             </Button>
           </Link>
         ) : null}

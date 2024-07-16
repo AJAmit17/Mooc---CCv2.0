@@ -1,0 +1,13 @@
+{
+  "Navbar": {
+    "tm" : "Teacher Mode",
+    "exit" : "Exit"
+  },
+  "Sidebar" : {
+    "dashboard" : "Dashboard",
+    "browse" : "Browse",
+    "ai" : "Ai-Assistant",
+    "course" : "Course",
+    "analytics" : "Analytics"
+  }
+}
