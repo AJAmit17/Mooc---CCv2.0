@@ -5,10 +5,8 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ToastProvider } from "@/components/providers/toaster-provider";
 import { ConfettiProvider } from "@/components/providers/confetti-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
-import {getMessages} from 'next-intl/server';
+import { getMessages } from 'next-intl/server';
 import { NextIntlClientProvider } from "next-intl";
-
-// const locales = ["en", "de", "kn-IN"];
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,17 +17,18 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-  locale
+  params: { locale }
 }: {
   children: React.ReactNode;
-  locale : string
+  params: { locale: string }
 }) {
   const messages = await getMessages();
+
   return (
     <ClerkProvider>
       <html lang={locale}>
         <body className={inter.className}>
-          <NextIntlClientProvider messages={messages}>
+          <NextIntlClientProvider locale={locale} messages={messages}>
             <ConfettiProvider />
             <ToastProvider />
             <ThemeProvider>{children}</ThemeProvider>
