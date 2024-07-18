@@ -7,12 +7,12 @@ import { ConfettiProvider } from "@/components/providers/confetti-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
-import { unstable_setRequestLocale } from "next-intl/server";
 
 const inter = Inter({ subsets: ["latin"] });
 
 const locales = ["en", "de", "kn-IN", "hi-IN"];
 
+export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "ConnectCraft | MOOCs",
   description: "All in one learning site",
@@ -29,7 +29,7 @@ export default async function RootLayout({
   children,
   params: { locale },
 }: Readonly<RootLayoutProps>) {
-  unstable_setRequestLocale(locale);
+  //@ts-ignore
   const messages = await getMessages();
 
   return (

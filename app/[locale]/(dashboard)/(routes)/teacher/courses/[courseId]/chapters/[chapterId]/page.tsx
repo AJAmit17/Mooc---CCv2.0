@@ -13,6 +13,8 @@ import { ChapterAccessForm } from "./_components/chapter-access-form";
 import { ChapterVideoForm } from "./_components/chapter-video-form";
 import { ChapterActions } from "./_components/chapter-actions";
 
+export const dynamic = "force-dynamic";
+
 const ChapterIdPage = async ({
   params
 }: {

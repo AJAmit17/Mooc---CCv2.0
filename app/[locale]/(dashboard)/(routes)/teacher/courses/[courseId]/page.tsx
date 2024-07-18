@@ -5,6 +5,8 @@ import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
 import CourseDetails from "./_components/course-details";
 
+export const dynamic = "force-dynamic";
+
 const CourseIdPage = async ({
   params
 }: {

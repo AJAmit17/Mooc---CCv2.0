@@ -6,6 +6,8 @@ import { getProgress } from "@/actions/get-progress";
 import { CourseSidebar } from "./_components/course-sidebar";
 import { CourseNavbar } from "./_components/course-navbar";
 
+export const dynamic = "force-dynamic";
+
 const CourseLayout = async ({
   children,
   params,

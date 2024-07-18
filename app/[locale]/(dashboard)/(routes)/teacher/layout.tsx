@@ -2,6 +2,8 @@ import { isTeacher } from "@/lib/teacher";
 import { auth } from '@clerk/nextjs/server';
 import { redirect } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+
 const TeacherLayout = ({
   children
 }: {

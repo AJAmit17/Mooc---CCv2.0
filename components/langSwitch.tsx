@@ -4,15 +4,13 @@ import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useTransition } from "react";
 
-import { Button } from "./ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
-
 export default function LocaleSwitcher() {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const localeActive = useLocale();
 
-  const onSelectChange = (nextLocale: string) => {
+  const onSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const nextLocale = e.target.value;
     startTransition(() => {
       const currentPath = window.location.pathname;
       const newPath = currentPath.replace(`/${localeActive}`, `/${nextLocale}`);
@@ -21,16 +19,17 @@ export default function LocaleSwitcher() {
   };
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button className="border-2 rounded py-2" disabled={isPending}>
-          {localeActive === "en" ? "English" : "Kannada"}
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuItem onSelect={() => onSelectChange("en")}>English</DropdownMenuItem>
-        <DropdownMenuItem onSelect={() => onSelectChange("kn-IN")}>Kannada</DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <label className="border-2 rounded">
+      <p className="sr-only">Change language</p>
+      <select
+        defaultValue={localeActive}
+        className="bg-transparent py-2"
+        onChange={onSelectChange}
+        disabled={isPending}
+      >
+        <option value="en">English</option>
+        <option value="kn-IN">Indonesian</option>
+      </select>
+    </label>
   );
 }

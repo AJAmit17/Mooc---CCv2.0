@@ -11,6 +11,8 @@ import { VideoPlayer } from "./_components/video-player";
 import { CourseEnrollButton } from "./_components/course-enroll-button";
 import { CourseProgressButton } from "./_components/course-progress-button";
 
+export const dynamic = "force-dynamic";
+
 const ChapterIdPage = async ({
   params
 }: {

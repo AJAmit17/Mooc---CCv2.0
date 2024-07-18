@@ -7,6 +7,8 @@ import { CoursesList } from "@/components/courses-list";
 
 import { InfoCard } from "./_components/info-card";
 
+export const dynamic = "force-dynamic";
+
 export default async function Dashboard() {
   const { userId } = auth();
 
