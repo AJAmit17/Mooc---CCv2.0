@@ -20,6 +20,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
+import { useTranslations } from "next-intl";
 
 interface DescriptionFormProps {
   initialData: Course;
@@ -62,17 +63,19 @@ export const DescriptionForm = ({
     }
   }
 
+  const t = useTranslations("Course-teacher")
+
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Course description
+        {t("course_description")}
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
-            <>Cancel</>
+            <>{t("cancel")}</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit description
+              {t("edit_description")}
             </>
           )}
         </Button>
@@ -112,7 +115,7 @@ export const DescriptionForm = ({
                 disabled={!isValid || isSubmitting}
                 type="submit"
               >
-                Save
+                {t("save")}
               </Button>
             </div>
           </form>

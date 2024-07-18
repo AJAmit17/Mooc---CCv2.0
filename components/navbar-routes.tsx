@@ -10,6 +10,7 @@ import { isTeacher } from "@/lib/teacher";
 
 import { SearchInput } from "./search-input";
 import { useTranslations } from "next-intl";
+import LanguageSwitcher from "./langSwitch";
 
 export const NavbarRoutes = () => {
   const { userId } = useAuth();
@@ -17,7 +18,7 @@ export const NavbarRoutes = () => {
 
   const isTeacherPage = pathname?.startsWith("/teacher");
   const isCoursePage = pathname?.includes("/courses");
-  const isSearchPage = pathname === "/search";
+  const isSearchPage = /\/(en|kn-IN|en)\/search/.test(pathname);
 
   const t = useTranslations("Navbar");
 
@@ -43,6 +44,7 @@ export const NavbarRoutes = () => {
             </Button>
           </Link>
         ) : null}
+        <LanguageSwitcher />
         <UserButton
           afterSignOutUrl="/"
         />

@@ -1,26 +1,21 @@
-import { authMiddleware } from "@clerk/nextjs";
-import createMiddleware from "next-intl/middleware";
- 
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
+import createMiddleware from 'next-intl/middleware';
 
 const intlMiddleware = createMiddleware({
-  locales: ["en", "de", "kn-IN"],
- 
-  defaultLocale: "en",
+  locales: ["en","kn-IN"],
+  defaultLocale: 'en'
 });
-// This example protects all routes including api/trpc routes
-// Please edit this to allow other routes to be public as needed.
-// See https://clerk.com/docs/references/nextjs/auth-middleware for more information about configuring your middleware
-export default authMiddleware({
-  beforeAuth: (req) => {
-    // Execute next-intl middleware before Clerk's auth middleware
-    return intlMiddleware(req);
-  },
+
+const isProtectedRoute = createRouteMatcher(['/:locale/dashboard(.*)']);
+
+export default clerkMiddleware((auth, req) => {
+  if (isProtectedRoute(req)) auth().protect();
  
-  // Ensure that locale specific sign-in pages are public
-  publicRoutes: ["/en", "/de", "/kn-IN"],
-}); 
+  return intlMiddleware(req);
+});
 
 export const config = {
-  matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
+  // The following matcher runs middleware on all routes
+  // except static assets.
+  matcher: [ '/((?!.*\\..*|_next).*)', '/', '/(api|trpc)(.*)'],
 };
- 

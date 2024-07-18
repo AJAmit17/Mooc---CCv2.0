@@ -1,15 +1,14 @@
-import { auth } from "@clerk/nextjs";
+import { auth } from '@clerk/nextjs/server';
 import { NextResponse } from "next/server";
 
 import { db } from "@/lib/db";
 
-export async function POST(
+export async function DELETE(
   req: Request,
-  { params }: { params: { courseId: string } }
+  { params }: { params: { courseId: string, attachmentId: string } }
 ) {
   try {
     const { userId } = auth();
-    const { url } = await req.json();
 
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
@@ -18,7 +17,7 @@ export async function POST(
     const courseOwner = await db.course.findUnique({
       where: {
         id: params.courseId,
-        userId: userId,
+        userId: userId
       }
     });
 
@@ -26,17 +25,17 @@ export async function POST(
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    const attachment = await db.attachment.create({
-      data: {
-        url,
-        name: url.split("/").pop(),
+    const attachment = await db.attachment.delete({
+      where: {
         courseId: params.courseId,
+        id: params.attachmentId,
       }
     });
 
     return NextResponse.json(attachment);
   } catch (error) {
-    console.log("COURSE_ID_ATTACHMENTS", error);
+    console.log("ATTACHMENT_ID", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
+

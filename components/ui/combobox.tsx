@@ -17,6 +17,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { useTranslations } from "next-intl"
 
 interface ComboboxProps {
   options: { label: string; value: string }[];
@@ -30,6 +31,7 @@ export const Combobox = ({
   onChange
 }: ComboboxProps) => {
   const [open, setOpen] = React.useState(false)
+  const t = useTranslations("Course-teacher")
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -42,7 +44,7 @@ export const Combobox = ({
         >
           {value
             ? options.find((option) => option.value === value)?.label
-            : "Select option..."}
+            : `${t("select_option")}`}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>

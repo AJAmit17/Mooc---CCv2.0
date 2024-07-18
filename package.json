@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@ai-sdk/google": "^0.0.22",
-    "@clerk/nextjs": "^4.31.3",
+    "@clerk/nextjs": "^5.2.4",
     "@google/generative-ai": "^0.13.0",
     "@hello-pangea/dnd": "^16.3.0",
     "@hookform/resolvers": "^3.3.1",

@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs";
+import { auth } from '@clerk/nextjs/server';
 import { redirect } from "next/navigation";
 import { MedalIcon, Medal, Trophy } from 'lucide-react'; // Import Lucide icons
 import { db } from "@/lib/db";

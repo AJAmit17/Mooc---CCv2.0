@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 
 interface TitleFormProps {
   initialData: {
@@ -60,17 +61,19 @@ export const TitleForm = ({
     }
   }
 
+  const t = useTranslations("Course-teacher")
+
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Course title
+        {t("course_title")}
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
-            <>Cancel</>
+            <>{t("cancel")}</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit title
+              {t("edit_title")}
             </>
           )}
         </Button>
@@ -107,7 +110,7 @@ export const TitleForm = ({
                 disabled={!isValid || isSubmitting}
                 type="submit"
               >
-                Save
+                {t("save")}
               </Button>
             </div>
           </form>
