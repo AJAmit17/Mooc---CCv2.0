@@ -46,9 +46,7 @@ const CourseDetails = ({ course, categories, completionText, isComplete }) => {
           <div>
             <div className="flex items-center gap-x-2">
               <IconBadge icon={LayoutDashboard} />
-              <h2 className="text-xl">
-                {t("customize_your_course")}
-              </h2>
+              <h2 className="text-xl">{t("customize_your_course")}</h2>
             </div>
             <TitleForm initialData={course} courseId={course.id} />
             <DescriptionForm initialData={course} courseId={course.id} />
@@ -56,7 +54,7 @@ const CourseDetails = ({ course, categories, completionText, isComplete }) => {
             <CategoryForm
               initialData={course}
               courseId={course.id}
-              options={categories.map((category) => ({
+              options={categories.map((category: any) => ({
                 label: category.name,
                 value: category.id,
               }))}
