@@ -52,7 +52,7 @@ const ChatTest = () => {
                 {m.role === "user" && (
                   <div className="mb-6 flex gap-3">
                     <Avatar>
-                      <AvatarImage src={user?.profileImageUrl || ""} />
+                      <AvatarImage src={user?.imageUrl || ""} />
                       <AvatarFallback className="text-sm">You</AvatarFallback>
                     </Avatar>
                     <div className="mt-1.5">
